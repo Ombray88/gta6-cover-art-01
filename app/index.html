@@ -1,23 +1,84 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
-<link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VICE COVER STUDIO — GTA-Style Cover Maker</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
-  </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
-</main>
-<script type="module" src="./src/main.js"></script>
+  <header>
+    <h1>VICE COVER STUDIO</h1>
+    <p class="tagline">Your photos. One sunset. A cover that looks straight out of Leonida.</p>
+  </header>
+
+  <div class="app-layout">
+    <section class="controls">
+      <div class="control-group">
+        <label for="photos">Add Photos</label>
+        <input id="photos" type="file" multiple accept="image/*">
+        <div class="sample-actions">
+          <button id="sample-boulevard" type="button">Sample: Boulevard</button>
+          <button id="sample-pier" type="button">Sample: Pier</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="caption">Cover Title</label>
+        <input id="caption" type="text" maxlength="40" value="LEONIDA NIGHTS">
+      </div>
+
+      <div class="control-group">
+        <label for="subtitle">Subtitle / Location</label>
+        <input id="subtitle" type="text" maxlength="60" value="VICE CITY • 2026">
+      </div>
+
+      <div class="control-group">
+        <label>Layout</label>
+        <div class="button-row">
+          <button type="button" data-layout="grid9" class="active">9-Panel Grid</button>
+          <button type="button" data-layout="trio">3-Column Trio</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Export Size</label>
+        <div class="button-row">
+          <button type="button" data-size="1080x1080" class="active">Square (1080×1080)</button>
+          <button type="button" data-size="1080x1350">Portrait (1080×1350)</button>
+          <button type="button" data-size="1920x1080">Landscape (1920×1080)</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Photo Panel Assignments</label>
+        <div id="slots"></div>
+      </div>
+
+      <div class="export-action">
+        <button id="export" type="button">Export PNG</button>
+        <p id="status" role="status"></p>
+      </div>
+
+      <div class="how-it-works">
+        <h3>How it works</h3>
+        <ol>
+          <li>Add your photos (or load samples).</li>
+          <li>Pick panels &amp; customize your title.</li>
+          <li>Export your high-res PNG cover!</li>
+        </ol>
+      </div>
+
+      <footer class="footer-note">
+        100% offline — your photos never leave this device. Original art, no Rockstar assets.
+      </footer>
+    </section>
+
+    <main class="preview-pane">
+      <canvas id="cover" width="1080" height="1080"></canvas>
+    </main>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
